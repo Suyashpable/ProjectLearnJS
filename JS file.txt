@@ -1,0 +1,88 @@
+
+//Dealing with undefined properties in an object
+
+const characters = [
+    {name: "Ninja", age: 14},
+    {name: "Master", age: 100},
+    {name: "Baby", age: 5},
+    {name: "Birdie"}
+];
+
+for (i = 0; i<characters.length; i++) {
+    console.log (`Hello, My name is ${characters[i].name}.`)
+
+    if (characters[i].age===undefined) {
+        console.log ("My age is a secret");
+    } else {
+        console.log (`I am ${characters[i].age} years old.`);
+    }
+
+    console.log ("-----------------------");
+}
+
+
+
+//Using Nested Objects
+
+const cafe = {
+    name: "My Cafe",
+    businessHours: {
+        openingHours: "10:30(AM)",
+        closingHours: "11:30(AM)"
+    }
+    menu: ["Tea", "Coffee", "Shakes"]
+};
+
+console.log (`Name: ${cafe.name}`);
+console.log (`From: ${cafe.businessHours.opening} to ${cafe.businessHours.closing}`);
+console.log ("---------------------------");
+
+console.log ("MENU RECOMMENDATIONS");
+for (i=0; i<cafe.menu.length; i++) {
+    console.log (cafe.menu[i]);
+}
+
+console.log ("THANK YOU");
+
+
+//Using Objects efficiently, using inheritance and overriding elements like constructors, methods etc.
+
+class Animal {
+    constructor (name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    greet () {
+        console.log ("Hello");
+    }
+
+    info () {
+        this.greet ();
+        console.log (`My name is ${this.name}.`);
+        console.log (`I am ${this.age} years old`);
+    }
+}
+
+class Dog extends Animal {
+    constructor (name, age, breed) {
+        super (name, age);
+        this.breed = breed;
+    }
+
+    info () {
+        this.greet ();
+        console.log (`My name is ${this.name}.`);
+        console.log (`I am ${this.age} years old.`);
+        console.log (`I belong to the ${this.breed} breed of dogs.`);
+        const humanAge = this.getHumanAge ();
+        console.log (`I am ${humanAge} years old in human years.`);
+    }
+
+    getHumanAge () {
+        this.age * 7;
+    }
+}
+
+const dog = new Dog ("Lloris", 4,"Pitbull");
+dog.info ();
